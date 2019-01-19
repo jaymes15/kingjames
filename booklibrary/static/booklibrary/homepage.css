@@ -1,0 +1,124 @@
+
+.logo{
+  height:50px;
+   width:220px;
+   margin-top:-30px;
+}
+
+		/* Style the search box inside the navigation bar */
+.search-box input[type=text] {
+  position:absolute;
+  top:10px;
+  right:70px;
+  padding: 6px;
+  border: 1px solid;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  width:300px;
+  
+  height:35px;
+}
+.searchbtn{
+	position:absolute;
+  top:18px;
+  right:33px;
+  height:35px;
+  width:100px;
+  background-color:black;
+  border-style:none;
+  color:white;
+ 
+}
+.pic{
+	height:170px;
+	width:130px;
+}	
+.head{
+	border-bottom:20px;
+}	
+
+.welcome h3{
+	margin-left:10px;
+	padding-left: 10px;
+}
+.con{
+	margin-bottom:50px;
+}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+	margin-top:-20px;
+	margin-bottom:50px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+
+.fot{
+  text-align: center;
+}	
+.welcome h3{
+	margin-left:10px;
+	padding-left: 10px;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+}
+
+
+@media only screen and (max-width: 480px) {
+	.searchbtn{
+	position:absolute;
+  top:18px;
+  right:7px;
+  height:35px;
+  width:70px;
+  background-color:black;
+  border-style:none;
+  color:white;
+ 
+}
+.logo{
+  height:50px;
+   width:100px;
+   margin-top:-30px;
+}
+
+	/* Style the search box inside the navigation bar */
+.search-box input[type=text] {
+  position:absolute;
+  top:10px;
+  right:55px;
+  padding: 6px;
+  border: 1px solid;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  width:130px;
+  
+  height:35px;
+}
+
+
+}

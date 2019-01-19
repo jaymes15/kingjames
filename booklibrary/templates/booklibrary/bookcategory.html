@@ -1,0 +1,17 @@
+
+
+
+		 		 <h2>{{ category.name}}</h2>
+			
+		 {% for post in post_list %}
+		 		
+		 		<h2><a href="{% url 'booklibrary:book_paste_detail' posts.id %}">{{posts.title}} </a></h2>
+		 			
+		{% endfor %}
+
+<a href="{% url 'booklibrary:book_paste_list' %}">View All Categories</a>
+
+
+
+
+

@@ -1,0 +1,61 @@
+
+
+{% load static from staticfiles %}
+
+
+
+
+
+
+
+<!doctype html>
+<html>
+		<head>
+											<meta charset="utf-8">
+											<link type="text/css" rel="stylesheet" href="{% static 'booklibrary/signup.css' %}">
+											
+											<meta name="viewport" content="width=device-width, initial-scale=1">
+											<title></title>
+											<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+					  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+					  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+									<link  type="text/css"  rel="stylesheet" href="{% static 'booklibrary/bootstrap.min.css' %}">
+		</head>
+		<body>
+		<header>
+			<h1><img src="{% static 'booklibrary/logo copy.png' %}"   class='logo'/></h1>
+		</header>
+		<div class='container'>
+			<div class='row justify-content-md-center'>
+				<div class='col-sm-9'>
+					<div class = 'quote'>
+						<h2><span style=" color:white" >"The more you read,the more things you will know.<br />The more that you learn,the more places you'll go"<br />-DR.SEUSS</span></h2>
+					</div>
+				</div>
+				<div class='col-sm-3'>
+					<h3><span style=" color:white" >Welcome to Booklib,New here?!,Sign up!</span></h3>
+					<div class='loginbox'>
+						<form action="" method="post">
+
+									{% csrf_token %}
+									{{form.as_p}}	
+
+								<button type='submit' class='btn btn-success log'><h4>Sign up</h4></button>
+						</form>
+							
+						
+							<p><a href="{% url 'booklibrary:login'  %}"> have an account?!,Login</a></p>
+						</form>
+					</div>	
+				</div>		
+			</div>			
+		</div>
+		
+		
+		
+		
+		
+		
+		</body>
+</html>		

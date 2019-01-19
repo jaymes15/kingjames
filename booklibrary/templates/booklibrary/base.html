@@ -1,0 +1,17 @@
+ <a href="{% url 'booklibrary:bookcomment' post_id=post.id  %}">&#128172 comments</a>
+					   <a href="{% url 'booklibrary:addcomment' post.id  %}">&#128172 leave a comment</a>
+					   
+
+					   <h2>{{ text.category }}</h2>
+{% for post in text %} 
+	<div class='media-left'>
+								<img src="{{ post.book_cover.url}}" width='150px' height='200px' class='media-object pic'/>
+							</div>
+							<div class='media-body'>
+								<h1 class='media-heading'>{{post.title}}</h1>
+								<h3>written by {{ post.author }} <br />in  {{post.category}} </h3>
+								<p>{{ post.created_on}}</p>
+								<h4><button type='button' class='btn btn-success'>
+								<a href=""><span style=" color:white" >view book details</span></a>
+
+ {% endfor %} 

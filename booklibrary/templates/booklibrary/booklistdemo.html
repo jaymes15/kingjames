@@ -1,0 +1,68 @@
+
+
+{% load static from staticfiles %}
+<!doctype html>
+<html>
+		<head>
+											<meta charset="utf-8">
+											<link type="text/css" rel="stylesheet" href="{% static 'booklibrary/category.css' %}">
+											
+											<meta name="viewport" content="width=device-width, initial-scale=1">
+											<title></title>
+											<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+					  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+					  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+									<link  type="text/css"  rel="stylesheet" href="{% static 'booklibrary/bootstrap.min.css' %}">
+		</head>
+		<body>
+		<header>
+		<div class='head'>
+		<h1><img src="{% static 'booklibrary/kkk.jpg' %}"  height='50px' width='220px'/></h1>
+		<div class="search-box">
+				
+			<hr/>	
+</div>
+</div>
+		</header>
+		<ul class="topnav">
+			  <li><a href="{% url 'booklibrary:book_paste_list' %}">Home</a></li>
+			  <li><a  class="active" href="{% url 'booklibrary:book_paste_listdemo'  %}">Categories</a></li>
+			  <li><a href="{% url 'booklibrary:create'  %}">Upload a book</a></li>
+			  {% if not request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:login'  %}">Login</a></li>
+			  {% endif %}
+			 {% if request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:otherusers'  %}">Community</a></li>
+			  {% endif %}
+			  {% if request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:userfavourite_book'  %}">Favourite books</a></li>
+			  {% endif %}
+			  <li class="right"><a href="{% url 'booklibrary:userprofile'  %}">Profile</a></li>
+		</ul>
+			<div class='welcome'>
+						<h3>Categories</h3>
+					</div>
+		<div class='container'>
+			{% if queryset %}
+			<div class='row '>
+			
+				{% for categories in queryset %}
+				<div class='col-sm-2'>
+					<div class="grey">
+					<button type='button' class='btn btn-default'>
+									<h3><a href="{% url 'booklibrary:displaycategory' categories.id %}">{{categories.name}}</a></h3>
+					</button>
+				</div>
+						
+				</div>
+				 {% endfor %}
+			</div>
+			{% else %}
+  	<h1>No recent books</h1>
+ {% endif %}			
+		</div>
+		
+		
+		</body>
+	</html>	

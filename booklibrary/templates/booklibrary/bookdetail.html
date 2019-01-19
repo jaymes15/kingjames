@@ -1,0 +1,169 @@
+ 
+{% load static from staticfiles %} 
+
+
+
+
+<!doctype html>
+<html>
+		<head>
+											<meta charset="utf-8">
+											<link type="text/css" rel="stylesheet" href="{% static 'booklibrary/detail.css' %}">
+											
+											<meta name="viewport" content="width=device-width, initial-scale=1">
+											<title></title>
+											<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+											<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+					  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+					  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+									<link  type="text/css"  rel="stylesheet" href="{% static 'booklibrary/bootstrap.min.css' %}">
+									
+									<script>
+					
+											function addone(field) {
+						field.value = Number(field.value) + 1;
+						}
+
+						function subtractone(field) {
+						field.value = Number(field.value) - 1;
+						}
+		</script>
+		</head>
+				<body>
+
+		<header>
+		<div class='head'>
+			<h1><img src="{% static 'booklibrary/kkk.jpg' %}"  class="logo" /></h1>
+		<div class="search-box">
+				
+			
+			<hr/>	
+</div>
+</div>
+		</header>
+		<ul class="topnav">
+			  <li><a class="active" href="{% url 'booklibrary:book_paste_list' %}">Home</a></li>
+			  <li><a href="{% url 'booklibrary:book_paste_listdemo'  %}">Categories</a></li>
+			  <li><a href="{% url 'booklibrary:create'  %}">Upload a book</a></li>
+			  {% if not request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:login'  %}">Login</a></li>
+			  {% endif %}
+			  {% if request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:otherusers'  %}">Community</a></li>
+			  {% endif %}
+			  {% if request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:userfavourite_book'  %}">Favourite books</a></li>
+			  {% endif %}
+			  <li class="right"><a href="{% url 'booklibrary:userprofile'  %}">Profile</a></li>
+		</ul>
+		
+			<div class='content'>
+			<div class='container'>
+		
+				<div class='media'>
+					<div class='media-left'>
+						<img src="{{ obj.book_cover.url}}" width='180px' height='250px' class='media-object pic'/>
+					</div>
+					<div class='media-body'>
+						<h1 class='media-heading'>{{obj.title}}</h1>
+						<h3>written by {{ obj.author }}</h3>
+						<h4>in {{ obj.category }}</h4>
+						<p>uploaded by {{ obj.user }}</p>
+						<p>created on {{ obj.created_on }}</p>
+						<a href="{{ obj.upload_book.url }}"><h4><button type='button' class='btn btn-success'>
+								<span style=" color:white" >Read book</span>
+						</button></h4></a>
+						<a href="{{ obj.upload_book.url }}" download><p><button type='button' class='btn btn-warning'>
+						Download book
+						</button></p></a>
+						
+					
+					</div>
+					
+					<h4 >
+					{{ obj.text }}	
+
+					</h4>
+
+					{{ total_likes }} Like{{ total_likes|pluralize }} 
+					{% if request.user.is_authenticated %}
+					<form method='POST' action='{% url "booklibrary:like_post" %}' >
+						{% csrf_token %}
+				
+					<!--input type="submit" onclick="this.disabled = true" value="Save" -->
+					
+					{% if is_liked %}
+							<button type='submit' name='obj_id' class='btn btn-danger' value='{{ obj.id }}'>Unlike</button>
+					{% else %}
+							<button type='submit' name='obj_id' class='btn btn-primary' value='{{ obj.id }}'>like</button>
+					{% endif %}
+
+
+
+						
+						 <a href="{% url 'booklibrary:addcomment' obj.id  %}">&#128172 leave a comment</a> 
+					{% if is_favourite %}	 
+					<a href='{% url "booklibrary:favourite_book" id=obj.id %}'>
+						<i class="fas fa-heart lg">Save
+							
+						</i>
+					</a>
+					{% else %}
+							<a href='{% url "booklibrary:favourite_book" id=obj.id %}'>
+						<i class="far fa-heart lg">Save
+							
+						</i>
+					</a>
+					{% endif %}
+
+				</form>
+				{% else %}
+				 <p> please login to like or leave a comment</p>
+				{% endif %}
+
+
+					{% if text %}
+							<h3>Comments</h3>
+							<p>total number of comments {{ text.count }}</p>
+
+
+					 {% for comment in text %}
+							
+				<div class='media'>
+						
+						<div class='media-left'>
+							{% if user.userprofile.image %}
+							<img src="{{ user.userprofile.image.url}}"  class='media-object img-rounded img-responsive pic1'/>
+							{% endif %}
+						</div>
+						<div class='media-body'>
+							<h3><b> {{ comment.name }} </b> <small>said {{ comment.text }}</small></h3>
+							 <p>said on {{ comment.created_on }}</p>
+						</div>
+						
+						
+					
+				</div>
+				<hr />
+					{% endfor %}
+					{% else %}
+							<h3>No Comments</h3>
+					{% endif %}		
+</div> 
+</form>
+					
+					
+					
+				
+					
+				</div>
+				
+			</div>
+			
+
+	</body>
+</html>	
+
+
+

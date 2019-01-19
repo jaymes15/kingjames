@@ -1,0 +1,105 @@
+
+{% load static from staticfiles %}
+
+
+
+
+
+
+<!doctype html>
+<html>
+		<head>
+											<meta charset="utf-8">
+											<link type="text/css" rel="stylesheet" href="{% static 'booklibrary/community.css' %}">
+											
+											<meta name="viewport" content="width=device-width, initial-scale=1">
+											<title></title>
+											<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+					  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+					  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+									<link  type="text/css"  rel="stylesheet" href="{% static 'booklibrary/bootstrap.min.css' %}">
+		</head>
+		<body>
+		<header>
+		<div class='head'>
+		<h1><img src="{% static 'booklibrary/kkk.jpg' %}"  class='logo'/></h1>
+		<div class="search-box">
+				<form method ='GET' action=''>
+					<p><input type="text" class="search-text" placeholder="search..." name="q" value='{{ request.get.q }}' > 
+				<input type="submit" value="search" class='searchbtn'></p>
+			</form>
+			<hr/>	
+</div>
+</div>
+		</header>
+		<ul class="topnav">
+			 <li><a  href="{% url 'booklibrary:book_paste_list' %}">Home</a></li>
+			  <li><a href="{% url 'booklibrary:book_paste_listdemo'  %}">Categories</a></li>
+			  <li><a href="{% url 'booklibrary:create'  %}">Upload a book</a></li>
+			  <li><a class="active" href="{% url 'booklibrary:otherusers'  %}">Community</a></li>
+			  {% if request.user.is_authenticated %}
+			  <li><a href="{% url 'booklibrary:userfavourite_book'  %}">Favourite books</a></li>
+			  {% endif %}
+			  <li class="right"><a href="{% url 'booklibrary:userprofile'  %}">Profile</a></li>
+		</ul>
+			<div class='welcome'>
+						<h3>Community
+						<a href="{% url 'booklibrary:friendview'  %}"><button type='button' class='btn btn-warning fol'>
+								view friends
+							</button></a></h3>
+			</div>
+
+		<div class='content'>	
+		<div class='container-fluid'>
+			
+				
+				<div class='tex'>
+						<h3>People You May Know</h3>
+				</div>		
+						{% for user in users %}
+							{% if not user in friends %}
+					
+							{% if user.userprofile.image %}
+							<img src="{{ user.userprofile.image.url}}" class='media-object img-rounded pic'/>
+							{% endif %}
+						
+							<h1 class='media-heading'>{{ user.username }}</h1>
+							<h3>{{ user.userprofile.description }}</h3>
+							
+							<h4><button type='button' class='btn btn-success'>
+									<a href="{% url 'booklibrary:otherusersprofile' pk=user.pk  %}"><span style=" color:white" >View Profile</span></a></h4>
+							</button>
+							<h4><a href="{% url 'booklibrary:change_friends' operation='add' pk=user.pk %}"><button type='button' class='btn btn-warning fol'>
+								Follow
+							</button></a></h4>
+						
+					<hr />
+					
+				
+				{% endif %}
+
+				{% endfor %}
+				
+					
+					
+				
+						
+							
+						
+							
+									
+				
+					
+				
+		</div>
+		
+		
+		
+		
+		
+		
+		</div>
+		
+		</body>
+	</html>	

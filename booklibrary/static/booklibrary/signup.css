@@ -1,0 +1,83 @@
+body{
+	background-image:url(images.jpg);
+	background-repeat:   no-repeat;
+	background-image-size:cover;
+	background-attachment: fixed;
+	font-family:Bahnschrift;
+
+	
+}
+div.loginbox {
+	color:white;
+}
+div.loginbox email{
+
+}
+header{
+	margin-bottom:10px;
+	color:blue;
+	padding-left:30px;
+}
+.loginbox input[type="text"],input[type="password"]{
+	border:none;
+	background-color:white;
+	border-radius:3px;
+	padding:10px;
+	font-family:Bahnschrift;
+	width:300px;
+	height:50px;
+	outline:none;
+	color:black;
+	font-size:16px;
+}
+.log{
+	width:90px;
+	height:50px;
+}
+h3{
+	color:red;
+	
+}
+.quote h2{
+	line-height:1.5em;
+	font-weight:bold;
+	margin-top:150px;
+}
+.logo{
+	height:150px;
+	 width:400px;
+	 margin-top:-30px;
+}
+
+
+@media only screen and (max-width: 480px) {
+	.quote h2{
+	line-height:1.5em;
+	font-weight:bold;
+	margin-left: 20px;
+	font-size:25px;
+	width:300px;
+}
+header{
+	margin-bottom:-120px;
+	color:blue;
+	padding-left:30px;
+}
+div.loginbox {
+	color:white;
+	margin-left: 30px;
+}
+body h3{
+	margin-left: 10px;
+	
+}
+.logo{
+	height:150px;
+	 width:220px;
+	 margin-top:-30px;
+}
+
+
+
+
+}
